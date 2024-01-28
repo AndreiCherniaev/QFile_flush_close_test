@@ -2,22 +2,22 @@
 #include <QFile>
 
 void writer(){
-    QFile csvDefaults;
-    csvDefaults.setFileName("test.bin");
-    if(!csvDefaults.open(QIODeviceBase::ReadWrite | QIODeviceBase::Truncate)){
-        qWarning() << "err Can't open file" << csvDefaults.fileName();
+    QFile file;
+    file.setFileName("test.bin");
+    if(!file.open(QIODeviceBase::ReadWrite | QIODeviceBase::Truncate)){
+        qWarning() << "err Can't open file" << file.fileName();
     }
     const quint8 myData[] = { 1,2,3 };
-    csvDefaults.write((const char*)myData, sizeof(myData));
-    csvDefaults.flush();
+    file.write((const char*)myData, sizeof(myData));
+    file.flush();
 
 //    //Why to get true arr size I need close, open?
 //    csvDefaults.close();
 //    csvDefaults.open(QIODeviceBase::ReadWrite);
 
-    const QByteArray arr(csvDefaults.readAll());
+    const QByteArray arr(file.readAll());
     qDebug() << "arr size=" << arr.size();
-    csvDefaults.close();
+    file.close();
 }
 
 int main(int argc, char *argv[]){
