@@ -9,7 +9,8 @@ void writer(){
     }
     const quint8 myData[] = { 1,2,3 };
     file.write((const char*)myData, sizeof(myData));
-    file.flush();
+    //instead of file.flush(); should be file.seek(0);
+    file.seek(0);
 
 //    //Why to get true arr size I need close, open?
 //    csvDefaults.close();
